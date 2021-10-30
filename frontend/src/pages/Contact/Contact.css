@@ -1,5 +1,7 @@
 .contactform__container {
+	position: relative;
 	padding: 70px 80px;
+	display: block;
  }
  .contactform__container .contactform__wrapper {
 	display: grid;

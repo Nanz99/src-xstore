@@ -9,7 +9,6 @@ import { formatPrice } from "./../../utils/helper";
 import { PayPalButton } from "react-paypal-button-v2";
 import {
   ORDER_CREATE_RESET,
-  ORDER_PAY_RESET,
 } from "../../constants/orderConstants";
 import { payOrder, detailsOrder } from "../../actions/orderActions";
 import Loading from "../../components/Loading/Loading";
@@ -61,7 +60,6 @@ function Paypal(props) {
     if (successPay) {
       props.history.push(`payment/order-complete/${orderId}`);
       dispatch({ type: ORDER_CREATE_RESET });
-      dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: CART_EMPTY });
     }
   }, [dispatch, successPay, props.history, orderId]);
@@ -69,15 +67,13 @@ function Paypal(props) {
   const successPaymentHandler = (data) => {
     console.log(data);
     if (data) {
-      const paymentResult = {
-        paypalResult: {
-          id: data.id,
-          status: data.status,
-          update_time: data.update_time,
-          payer: data.payer,
-        },
+      const paypalResult = {
+        id: data.id,
+        status: data.status,
+        update_time: data.update_time,
+        payer: data.payer,
       };
-      dispatch(payOrder(order, paymentResult));
+      dispatch(payOrder(order, paypalResult));
     }
   };
 
@@ -118,7 +114,7 @@ function Paypal(props) {
                         Số Điện Thoại:{" "}
                       </span>{" "}
                       <span className="tracking-wider">
-                        {" "}
+                        (+84){" "} 
                         {order.checkoutDetails.numberPhone}
                       </span>
                     </p>
@@ -218,7 +214,7 @@ function Paypal(props) {
               <PayPalButton
                 amount={totalOrderDollar}
                 onSuccess={successPaymentHandler}
-              ></PayPalButton>
+              />
             </div>
           </div>
         </div>

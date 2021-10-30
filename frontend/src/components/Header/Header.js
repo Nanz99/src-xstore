@@ -89,25 +89,25 @@ function Header() {
                   </Link>
                   <ul className="dropdown-menu w-36 shadow-lg bg-white border border-gray rounded-sm">
                     <li>
-                      <Link to="/profile" className="text-base block p-3 hover:bg-gray transition-all">
+                      <Link to="/profile" className="text-base block p-2 hover:bg-gray transition-all">
                         Profile
                       </Link>
                     </li>
                     <li>
-                      <Link to="/order-history" className="text-base p-3 block hover:bg-gray transition-all">
-                        Order List
+                      <Link to="/order-history" className="text-base p-2 block hover:bg-gray transition-all">
+                        Đơn Hàng
                       </Link>
                     </li>
                     <li>
                       <Link
                         to="#"
-                        className="text-base block p-3 hover:bg-gray transition-all"
+                        className="text-base block p-2 hover:bg-gray transition-all"
                         onClick={() => {
                           dispatch(signout());
                           toast.success("🦄 Đăng Xuất Thành Công!");
                         }}
                       >
-                        Sign out
+                        Đăng Xuất
                       </Link>
                     </li>
                   </ul>

@@ -17,7 +17,6 @@ import {
   ORDER_PAYMENT_VNPAY_SUCCESS,
   ORDER_PAY_FAIL,
   ORDER_PAY_REQUEST,
-  ORDER_PAY_RESET,
   ORDER_PAY_SUCCESS,
 } from "../constants/orderConstants";
 
@@ -33,7 +32,7 @@ export const orderCreateReducer = (state = {}, action) => {
         success: true,
         order: action.payload,
         checkoutDetails: action.payload.checkoutDetails,
-        paymentResult: action.payload.paymentResult,
+        
       };
     case ORDER_CREATE_FAIL:
       return {
@@ -53,11 +52,11 @@ export const orderPayReducer = (state = {}, action) => {
     case ORDER_PAY_REQUEST:
       return { loading: true };
     case ORDER_PAY_SUCCESS:
-      return { loading: false, success: true };
+      return { loading: false, success: true , order: action.payload, paypalResult: action.payload.paypalResult };
     case ORDER_PAY_FAIL:
       return { loading: false, error: action.payload };
-    case ORDER_PAY_RESET:
-      return {};
+    // case ORDER_PAY_RESET:
+    //   return {};
     default:
       return state;
   }

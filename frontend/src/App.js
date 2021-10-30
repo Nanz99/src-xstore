@@ -16,7 +16,6 @@ import GoToTop from "./components/GoToTop/GoToTop";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Products from './pages/Products/Products';
 import OrderComplete from './pages/OrderComplete/OrderComplete';
-import hoanthanh from "./pages/OrderComplete/hoanthanh";
 import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import Paypal from "./pages/Payment/Paypal";
 import Vnpay from "./pages/Payment/Vnpay";
@@ -51,8 +50,7 @@ export default function App() {
         <Route path="/payment/pay-paypal/:id" component={Paypal} exact />
         <Route path="/payment/pay-vnpay/:id" component={Vnpay} exact />
         <Route path="/order-history" component={OrderHistory} exact />
-        <Route path="/payment/order-complete/:id" component={OrderComplete} />
-        <Route path="/payment/order-complete" component={hoanthanh} />
+        <Route path="/payment/order-complete/:id" component={OrderComplete} exact/>
       </Switch>
       <ScrollToTop showBelow={250} />
       <Footer />

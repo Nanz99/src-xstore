@@ -43,29 +43,44 @@ export const createOrder = (order) => async (dispacth, getState) => {
   }
 };
 
-export const payOrder =
-  (order, paymentResult) => async (dispatch, getState) => {
-    dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paymentResult } });
-    const {
-      userSignin: { userInfo },
-    } = getState();
-    try {
-      const { data } = axios.put(
-        `/api/orders/${order._id}/pay`,
-        paymentResult,
-        {
-          headers: { Authorization: `Bearer ${userInfo.token}` },
-        }
-      );
-      dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
-    } catch (error) {
-      const message =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
-      dispatch({ type: ORDER_PAY_FAIL, payload: message });
-    }
-  };
+export const payOrder = (order, paypalResult) => async (dispatch, getState) => {
+  dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paypalResult } });
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try {
+    const { data } = await axios.put(`/api/orders/${order._id}/pay`, paypalResult, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
+   
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ORDER_PAY_FAIL, payload: message });
+  }
+};
+export const payOrderVnpay = (order, vnpayResult) => async (dispatch, getState) => {
+  dispatch({ type: ORDER_PAY_REQUEST, payload: { order, vnpayResult } });
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try {
+    const { data } = await axios.put(`/api/orders/${order._id}/pay-vnpay`, vnpayResult, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
+
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ORDER_PAY_FAIL, payload: message });
+  }
+};
 
 export const paymentWithVNPAY =
   (
@@ -94,7 +109,7 @@ export const paymentWithVNPAY =
     try {
       const { data } = await axios.post(
         "/api/payment/create_vnpayurl",
-        {orderId, amount, bankCode, orderDescription, orderType, language },
+        { orderId, amount, bankCode, orderDescription, orderType, language },
         {
           headers: {
             Authorization: `Bearer ${userInfo.token}`,

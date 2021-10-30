@@ -88,11 +88,12 @@ function Vnpay(props) {
                             Số Điện Thoại:{" "}
                           </span>{" "}
                           <span className="tracking-wider">
-                            {" "}
+                          (+84){" "} 
                             {order.checkoutDetails.numberPhone}
                           </span>
                         </p>
                       )}
+                      
                       {order.checkoutDetails.email && (
                         <p className="p-3 border-b border-gray-7 border-solid ">
                           <span className="font-semibold tracking-wider">

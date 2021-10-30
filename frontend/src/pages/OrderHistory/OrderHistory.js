@@ -59,6 +59,7 @@ function OrderHistory(props) {
                 </StyledTableCell>
                 <StyledTableCell align="center">Tổng Đơn Hàng</StyledTableCell>
                 <StyledTableCell align="center">Thanh Toán</StyledTableCell>
+                <StyledTableCell align="center">Phương Thức</StyledTableCell>
                 <StyledTableCell align="center">Tình Trạng</StyledTableCell>
                 <StyledTableCell align="center">Hành Động</StyledTableCell>
               </TableRow>
@@ -83,6 +84,9 @@ function OrderHistory(props) {
                         {item.isPaid === true
                           ? "Đã Thanh Toán"
                           : "Chưa Thanh Toán"}
+                      </StyledTableCell>
+                      <StyledTableCell align="center" className="bg-white">
+                        {item.isPaid === true ? item.checkoutDetails.paymentMethod : "Chưa Xác Định"}
                       </StyledTableCell>
                       <StyledTableCell align="center" className="bg-white">
                         {item.isPaid === true ? "Đang Giao" : "Đang xử Lý"}

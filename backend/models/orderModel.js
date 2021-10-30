@@ -35,9 +35,18 @@ const orderSchema = new mongoose.Schema(
       totalOrder: { type: Number, required: true },
       paymentMethod: { type: String, required: true },
     },
-    paymentResult: {
-      paypalResult: Object,
-      vnpayResult: Object,
+    paypalResult: {
+      id: { type: String },
+      status: { type: String },
+      update_time: { type: String },
+      payer: Object,
+    },
+    vnpayResult: {
+      amount: { type: Number },
+      bankCode: { type: String },
+      cardType: { type: String },
+      responseCode: { type: String },
+      type: Object,
     },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     isPaid: { type: Boolean, default: false },
