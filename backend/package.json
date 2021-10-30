@@ -1,0 +1,37 @@
+{
+  "name": "mern_stack-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon --watch --experimental-modules --es-module-specifier-resolution=node server.js"
+  },
+  "author": "NGUYEN ANH NHUT",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dateformat": "^5.0.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.5",
+    "multer": "^1.4.3",
+    "node": "^16.6.1",
+    "qs": "^6.10.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "12.4.0",
+    "npm": "6.9.0"
+  }
+}
