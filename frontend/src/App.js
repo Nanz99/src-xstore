@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./assets/styles/css/tailwind.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -20,6 +20,7 @@ import OrderHistory from "./pages/OrderHistory/OrderHistory";
 import Paypal from "./pages/Payment/Paypal";
 import Vnpay from "./pages/Payment/Vnpay";
 import Contact from "./pages/Contact/Contact";
+import { Switch } from 'react-router-dom';
 
 
 export default function App() {

@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "https://xstore-app.herokuapp.com",
+  "proxy": "http://127.0.0.1:5555",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.3.0",
@@ -69,5 +69,9 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.14",
     "tailwindcss-cli": "^0.1.2",
     "vite": "^2.5.10"
+  },
+  "engines": {
+    "node": "14.15.4",
+    "npm": "7.24.0"
   }
 }
