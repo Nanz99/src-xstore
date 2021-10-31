@@ -11,3 +11,7 @@ export const USER_SIGNIN_FAIL = "USER_SIGNIN_FAIL";
 export const USER_SIGNOUT = "USER_SIGNOUT";
 
 export const CLEAR_ERROR = "CLEAR_ERROR";
+
+
+export const OPEN_STICKY = "OPEN_STICKY";
+export const CLOSE_STICKY = "CLOSE_STICKY";

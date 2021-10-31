@@ -2,6 +2,8 @@
 
 import axios from "axios";
 import {
+  CLOSE_STICKY,
+  OPEN_STICKY,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -14,7 +16,10 @@ import {
 export const signin = (email, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
   try {
-    const { data } = await axios.post("/api/users/signin", { email, password });
+    const { data } = await axios.post(
+      "https://xstore-app.herokuapp.com/api/users/signin",
+      { email, password }
+    );
     dispatch({
       type: USER_SIGNIN_SUCCESS,
       payload: data,
@@ -34,11 +39,14 @@ export const signin = (email, password) => async (dispatch) => {
 export const register = (name, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
   try {
-    const { data } = await axios.post("/api/users/register", {
-      name,
-      email,
-      password,
-    });
+    const { data } = await axios.post(
+      "https://xstore-app.herokuapp.com/api/users/register",
+      {
+        name,
+        email,
+        password,
+      }
+    );
     dispatch({
       type: USER_REGISTER_SUCCESS,
       payload: data,
@@ -60,9 +68,16 @@ export const register = (name, email, password) => async (dispatch) => {
 };
 
 export const signout = () => (dispatch) => {
-  localStorage.removeItem('userInfo');
+  localStorage.removeItem("userInfo");
   // localStorage.removeItem('cartItems');
   // localStorage.removeItem('shippingAddress');
   dispatch({ type: USER_SIGNOUT });
   // document.location.href = '/dang-nhap';
+};
+
+export const openSticky = () => (dispatch) => {
+  dispatch({ type: OPEN_STICKY });
+};
+export const closeSticky = () => (dispatch) => {
+  dispatch({ type: CLOSE_STICKY });
 };

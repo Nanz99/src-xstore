@@ -61,7 +61,7 @@ function OrderHistory(props) {
                 <StyledTableCell align="center">Thanh Toán</StyledTableCell>
                 <StyledTableCell align="center">Phương Thức</StyledTableCell>
                 <StyledTableCell align="center">Tình Trạng</StyledTableCell>
-                <StyledTableCell align="center">Hành Động</StyledTableCell>
+                {/* <StyledTableCell align="center">Hành Động</StyledTableCell> */}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -91,7 +91,7 @@ function OrderHistory(props) {
                       <StyledTableCell align="center" className="bg-white">
                         {item.isPaid === true ? "Đang Giao" : "Đang xử Lý"}
                       </StyledTableCell>
-                      <StyledTableCell align="center" className="bg-white">
+                      {/* <StyledTableCell align="center" className="bg-white">
                         <button
                           type="button"
                           onClick={() => {
@@ -100,7 +100,7 @@ function OrderHistory(props) {
                         >
                           <i className="fa fa-trash-alt"></i>
                         </button>
-                      </StyledTableCell>
+                      </StyledTableCell> */}
                     </StyledTableRow>
                   );
                 })}

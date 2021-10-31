@@ -9,6 +9,7 @@ import { formatPrice } from "./../../utils/helper";
 import { PayPalButton } from "react-paypal-button-v2";
 import {
   ORDER_CREATE_RESET,
+  ORDER_PAY_RESET,
 } from "../../constants/orderConstants";
 import { payOrder, detailsOrder } from "../../actions/orderActions";
 import Loading from "../../components/Loading/Loading";
@@ -34,9 +35,12 @@ function Paypal(props) {
   useEffect(() => {
     dispatch(detailsOrder(orderId));
   }, [dispatch, orderId]);
+  
   useEffect(() => {
-    const addPayPalScript = async () => {
-      // const { data } = await axios.get("/api/config/paypal");
+    dispatch({ type: ORDER_PAY_RESET });
+  }, [dispatch]);
+  useEffect(() => {
+    const addPayPalScript = () => {
       const data =
         "AUh1s1jSIIoJPp3Vgd8VQCEjD_LIyLRg1DEg7QyHYnBfXTg_H2hxXvnqBi1aWnd1CWZEvEEVV1xgPk2n";
       const script = document.createElement("script");
@@ -65,7 +69,6 @@ function Paypal(props) {
   }, [dispatch, successPay, props.history, orderId]);
 
   const successPaymentHandler = (data) => {
-    console.log(data);
     if (data) {
       const paypalResult = {
         id: data.id,
@@ -114,8 +117,7 @@ function Paypal(props) {
                         Số Điện Thoại:{" "}
                       </span>{" "}
                       <span className="tracking-wider">
-                        (+84){" "} 
-                        {order.checkoutDetails.numberPhone}
+                        (+84) {order.checkoutDetails.numberPhone}
                       </span>
                     </p>
                   )}

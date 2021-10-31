@@ -92,7 +92,7 @@ function Cart(props) {
                 <StyledTableCell align="center">Giá</StyledTableCell>
                 <StyledTableCell align="center">Số Lượng</StyledTableCell>
                 <StyledTableCell align="center">Thành Tiền</StyledTableCell>
-                <StyledTableCell align="center">Hành Động</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>

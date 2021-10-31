@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "http://127.0.0.1:5555",
+  "proxy": "https://xstore-app.herokuapp.com",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.3.0",
@@ -16,7 +16,6 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
-    "date-format": "^3.0.0",
     "dateformat": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
     "qs": "^6.10.1",
@@ -38,7 +37,6 @@
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.1",
-    "vnpay": "^1.0.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

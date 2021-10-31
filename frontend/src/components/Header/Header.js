@@ -6,18 +6,18 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import jwt from "jsonwebtoken";
-import { signout } from "../../actions/userActions";
+import { closeSticky, openSticky, signout } from "../../actions/userActions";
 import { toast } from "react-toastify";
-import { openModalSearch } from './../../actions/productActions';
+import { openModalSearch } from "./../../actions/productActions";
 import SearchBox from "../SearchBox/SearchBox";
-
+import "./Header.css";
 
 function Header() {
   const { userInfo } = useSelector((state) => state.userSignin);
   const { cartItems } = useSelector((state) => state.cart);
   const [account, setAccount] = useState({});
   const dispatch = useDispatch();
-
+  const { isSticky } = useSelector((state) => state.headerSticky);
   useEffect(() => {
     if (userInfo) {
       jwt.verify(userInfo.token, "somthingsecret", (err, decode) => {
@@ -26,12 +26,24 @@ function Header() {
       });
     }
   }, [userInfo]);
+
+  const handleSticky = () => {
+    if (window.pageYOffset > 150) {
+      dispatch(openSticky());
+    } else {
+      dispatch(closeSticky());
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleSticky);
+    return () => window.removeEventListener("scroll", handleSticky);
+  });
   return (
     <div>
       <TopHeader />
-      <SearchBox/>
-      <div>
-        <div className="flex justify-between items-center px-12 py-6 border-b border-solid border-gray-7">
+      <SearchBox />
+      <div >
+        <div className={`flex justify-between items-center px-12 py-6 border-b border-solid border-gray-7  ${isSticky ? "header-sticky shadow-md border-b border-solid border-gray-7" : ""}`}>
           <Link to="/" className="block w-36 ">
             <img src={logo} alt="logo" />
           </Link>
@@ -89,12 +101,18 @@ function Header() {
                   </Link>
                   <ul className="dropdown-menu w-36 shadow-lg bg-white border border-gray rounded-sm">
                     <li>
-                      <Link to="/profile" className="text-base block p-2 hover:bg-gray transition-all">
+                      <Link
+                        to="/profile"
+                        className="text-base block p-2 hover:bg-gray transition-all"
+                      >
                         Profile
                       </Link>
                     </li>
                     <li>
-                      <Link to="/order-history" className="text-base p-2 block hover:bg-gray transition-all">
+                      <Link
+                        to="/order-history"
+                        className="text-base p-2 block hover:bg-gray transition-all"
+                      >
                         Đơn Hàng
                       </Link>
                     </li>
@@ -118,7 +136,10 @@ function Header() {
                 </Link>
               )}
             </li>
-            <li className="inline text-xl leading-5 mx-3 cursor-pointer" onClick={() => dispatch(openModalSearch())}>
+            <li
+              className="inline text-xl leading-5 mx-3 cursor-pointer"
+              onClick={() => dispatch(openModalSearch())}
+            >
               <i className="fab fa-sistrix"></i>
             </li>
             <li className="inline-block text-xl leading-5 mx-3">

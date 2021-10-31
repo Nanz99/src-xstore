@@ -1,3 +1,5 @@
+/** @format */
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Meta from "../../components/Meta/Meta";
@@ -15,10 +17,9 @@ import {
 function Checkout(props) {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  const {
-    order,
-    success: successCreate,
-  } = useSelector((state) => state.orderCreate);
+  const { order, success: successCreate } = useSelector(
+    (state) => state.orderCreate
+  );
 
   const { userInfo } = useSelector((state) => state.userSignin);
 
@@ -54,20 +55,9 @@ function Checkout(props) {
   const [paymentMethod, setPaymentMethod] = useState("");
 
 
- 
-  // useEffect(() => {
-  //   if (successCreate) {
-  //     props.history.push(`payment/pay-paypal/${order._id}`);
-  //   }
-  // }, [
-  //   dispatch,
-  //   successPay,
-  //   successCreate,
-  //   props.history,
-  //   order,
-  //   paymentResult,
-  // ]);
-
+  useEffect(() => {
+    dispatch({ type: ORDER_PAY_RESET });
+  },[dispatch])
   const paymentTranferBank = () => {
     const data = {
       paymentMethod,
@@ -92,12 +82,11 @@ function Checkout(props) {
       })
     );
     if (order) {
-      props.history.push(`/thanh-toan/order-complete/${order._id}`);
+      props.history.push(`/payment/order-complete/${order._id}`);
       dispatch({ type: ORDER_CREATE_RESET });
       dispatch({ type: ORDER_PAY_RESET });
     }
   };
- 
 
   useEffect(() => {
     axios.get("https://provinces.open-api.vn/api/p").then((res) => {
@@ -146,28 +135,18 @@ function Checkout(props) {
         checkoutDetails: data,
       })
     );
+   
   };
   const paymentWithPaypal = () => {
     if (successCreate) {
-    props.history.push(`/payment/pay-paypal/${order._id}`);
+      props.history.push(`/payment/pay-paypal/${order._id}`);
     }
   };
   const paymentWithVnpay = () => {
     if (successCreate) {
       props.history.push(`/payment/pay-vnpay/${order._id}`);
-      }
+    }
   };
-  //ModalPayment
-
-  // const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  // function openModal() {
-  //   setIsOpen(true);
-  // }
-
-  // function closeModal() {
-  //   setIsOpen(false);
-  // }
 
   return (
     <div>
@@ -475,7 +454,6 @@ function Checkout(props) {
           </div>
         </div>
       </form>
-     
     </div>
   );
 }

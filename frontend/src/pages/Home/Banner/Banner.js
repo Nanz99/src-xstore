@@ -16,7 +16,7 @@ function Banner() {
       <svg viewBox="0 0 960 300" className="text-effect">
         <symbol id="s-text">
           <text textAnchor="middle" x="50%" y="80%">
-          Giảm Giá đến 70%
+          Giảm Giá đến 50%
           </text>
         </symbol>
         <g className="g-ants">

@@ -11,3 +11,5 @@ export const getUniqueValues = (data, type) => {
    return [ ...new Set(unique)]
  }
  
+
+ export const baseUrl = '/images'

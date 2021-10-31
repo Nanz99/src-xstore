@@ -20,6 +20,7 @@ import {
   productSearchReducer,
 } from "./reducers/productReducers";
 import {
+  headerStickyReducer,
   userRegisterReducer,
   userSigninReducer,
 } from "./reducers/userReducers";
@@ -44,6 +45,7 @@ const reducer = combineReducers({
   productList: productListReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
+  headerSticky: headerStickyReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
   openModalSearch: openModalSearchReducer,

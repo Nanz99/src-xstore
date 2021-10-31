@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { detailsOrder, payOrderVnpay } from "../../actions/orderActions";
 import successimg from "../../assets/images/thanh-toan/success.jpg";
 import dateFormat from "dateformat";
-import { ORDER_CREATE_RESET } from "../../constants/orderConstants";
+import { ORDER_CREATE_RESET, ORDER_PAY_RESET } from "../../constants/orderConstants";
 import qs from "qs";
 
 function OrderComplete(props) {
@@ -51,7 +51,7 @@ function OrderComplete(props) {
       };
       if (vnp_ResponseCode === "00") {
         dispatch(payOrderVnpay(order, vnpayResult));
-        // dispatch({ type: ORDER_PAY_RESET });
+        dispatch({ type: ORDER_PAY_RESET });
       }
     }
   }, [

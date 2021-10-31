@@ -24,7 +24,7 @@ function ProductSale({ products }) {
       <Slider {...settings} className="slick-container-2">
         {products &&
           products
-            .filter((product) => product.newArrivals === true)
+            .filter((product) => product.productSale === true)
             .map((product) => {
               return <Product  key={product._id} product={product} />;
             })}
